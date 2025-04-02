@@ -1,10 +1,8 @@
-def count_words(content):
-    words = content.split()
-    return len(words)
+from stats import get_num_words
 
 
-def count_characters(content):
-    counted_chars = {}
+def count_characters(content: str) -> dict[str, int]:
+    counted_chars: dict[str, int] = {}
     for char in content.strip():
         if not char.isalpha():
             continue
@@ -23,8 +21,9 @@ def main():
     with open(file_path) as f:
         file_contents = f.read()
 
+    num_words = get_num_words(file_contents)
     print(f"--- Begin report of {file_path} ---")
-    print(f"Word Count: {count_words(file_contents)}")
+    print(f"{num_words} words found in the document")
     print()
     counted_characters = count_characters(file_contents)
     sorted_characters = dict(
